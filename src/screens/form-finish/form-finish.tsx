@@ -1,7 +1,7 @@
 import Happy from '../../assets/happy.svg'
 import Sad from '../../assets/sad.svg'
 import { Header, Wrapper } from './form-finish.style'
-import { Heading, SubHeading } from '../../components/global.styles'
+import { Heading, Text } from '../../components/global.styles'
 import { Button } from '../../components/button/button'
 
 export function FormFinish() {
@@ -24,9 +24,9 @@ function GoodMeal() {
         <Heading style={{ textAlign: 'center' }} variant={'diet-in'}>
           Continue assim!
         </Heading>
-        <SubHeading style={{ textAlign: 'center' }} variant={'neutral'}>
+        <Text style={{ textAlign: 'center' }} variant={'neutral'}>
           Você continua dentro da dieta. Muito bem!
-        </SubHeading>
+        </Text>
       </Header>
       <Happy />
     </>
@@ -40,10 +40,10 @@ function BadMeal() {
         <Heading style={{ textAlign: 'center' }} variant={'diet-out'}>
           Que pena!
         </Heading>
-        <SubHeading style={{ textAlign: 'center' }} variant={'neutral'}>
+        <Text style={{ textAlign: 'center' }} variant={'neutral'}>
           Você saiu da dieta dessa vez, mas continue se esforçando e não
           desista!
-        </SubHeading>
+        </Text>
       </Header>
       <Sad />
     </>

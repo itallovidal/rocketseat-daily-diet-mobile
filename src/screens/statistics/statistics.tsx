@@ -1,6 +1,6 @@
 import { StatsWrapper, Wrapper } from './statistics.style'
 import { Header } from './header/header'
-import { SubHeading } from '../../components/global.styles'
+import { Text } from '../../components/global.styles'
 import { StatsCard } from './card/stats-card'
 
 export function Statistics() {
@@ -9,9 +9,9 @@ export function Statistics() {
       <Header />
 
       <StatsWrapper>
-        <SubHeading style={{ marginBottom: 12 }} weight={'bold'}>
+        <Text style={{ marginBottom: 12 }} weight={'bold'}>
           Estatísticas Gerais
-        </SubHeading>
+        </Text>
 
         <StatsCard
           variant={'neutral'}

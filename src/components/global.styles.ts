@@ -24,12 +24,15 @@ export type ITheme = typeof theme
 export const dietStyle = {
   neutral: {
     background: theme.colors.gray200,
+    color: theme.colors.greenDark,
   },
   'diet-in': {
     background: theme.colors.greenLight,
+    color: theme.colors.greenDark,
   },
   'diet-out': {
     background: theme.colors.redLight,
+    color: theme.colors.redDark,
   },
 }
 
@@ -64,7 +67,7 @@ export const Heading = styled.Text<{ variant: ITextStyleProps }>(
   }),
 )
 
-export const SubHeading = styled.Text<{ variant: ITextStyleProps }>(
+export const Text = styled.Text<{ variant: ITextStyleProps }>(
   ({ variant }) => ({
     fontSize: 16,
     fontWeight: textStyle[variant].weight,

@@ -17,8 +17,8 @@ const buttonVariant = {
   outlined: {
     backgroundColor: 'white',
     color: theme.colors.gray600,
-    borderColor: theme.colors.white,
-    borderWidth: 0,
+    borderColor: theme.colors.gray600,
+    borderWidth: 1,
   },
   transparent: {
     backgroundColor: 'transparent',
@@ -60,7 +60,7 @@ export const Wrapper = styled.TouchableOpacity<{
 
 export const Text = styled.Text<{ variant: ButtonVariantStyle }>(
   ({ variant }) => ({
-    fontSize: 18,
+    fontSize: 14,
     color: buttonVariant[variant].color,
   }),
 )
