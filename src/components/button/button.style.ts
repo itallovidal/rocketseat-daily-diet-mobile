@@ -1,13 +1,42 @@
 import styled from 'styled-components/native'
+import { theme } from '../global.styles'
 
 const buttonVariant = {
+  light: {
+    backgroundColor: theme.colors.gray100,
+    color: 'black',
+    borderColor: theme.colors.white,
+    borderWidth: 0,
+  },
   filled: {
-    backgroundColor: '#333638',
+    backgroundColor: theme.colors.gray600,
     color: 'white',
+    borderColor: theme.colors.white,
+    borderWidth: 0,
   },
   outlined: {
     backgroundColor: 'white',
-    color: '#333638',
+    color: theme.colors.gray600,
+    borderColor: theme.colors.white,
+    borderWidth: 0,
+  },
+  transparent: {
+    backgroundColor: 'transparent',
+    color: theme.colors.gray600,
+    borderColor: theme.colors.white,
+    borderWidth: 0,
+  },
+  'diet-in': {
+    backgroundColor: theme.colors.greenLight,
+    borderColor: theme.colors.greenMid,
+    borderWidth: 1,
+    color: 'black',
+  },
+  'diet-out': {
+    backgroundColor: theme.colors.redLight,
+    borderColor: theme.colors.redMid,
+    borderWidth: 1,
+    color: 'black',
   },
 }
 
@@ -25,6 +54,8 @@ export const Wrapper = styled.TouchableOpacity<{
   gap: 8,
 
   background: buttonVariant[variant].backgroundColor,
+  borderColor: buttonVariant[variant].borderColor,
+  borderWidth: buttonVariant[variant].borderWidth,
 }))
 
 export const Text = styled.Text<{ variant: ButtonVariantStyle }>(

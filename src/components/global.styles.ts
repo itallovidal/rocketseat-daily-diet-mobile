@@ -27,3 +27,17 @@ export const theme = {
 } as const
 
 export type ITheme = typeof theme
+
+export const dietStyle = {
+  neutral: {
+    background: theme.colors.gray200,
+  },
+  'diet-in': {
+    background: theme.colors.greenLight,
+  },
+  'diet-out': {
+    background: theme.colors.redLight,
+  },
+}
+
+export type TDietStyle = keyof typeof dietStyle

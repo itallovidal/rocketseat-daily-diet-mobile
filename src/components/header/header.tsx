@@ -11,10 +11,10 @@ import DailyDietLogo from '../../assets/Logo.png'
 export function Header() {
   return (
     <Wrapper>
+      <Logo source={DailyDietLogo} />
       <ProfileImageWrapper>
         <ProfileImage source={ProfilePlaceholderImage} />
       </ProfileImageWrapper>
-      <Logo source={DailyDietLogo} />
     </Wrapper>
   )
 }
