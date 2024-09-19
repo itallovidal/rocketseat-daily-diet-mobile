@@ -1,6 +1,6 @@
 import { List } from './day-meal-list.styled'
 import { IMealInfo, MealCard } from './meal-card/meal-card'
-import { Title } from '../../../../components/global.styles'
+import { SubHeading } from '../../../../components/global.styles'
 
 const TEMP: { title: string; data: IMealInfo[] }[] = [
   {
@@ -140,7 +140,7 @@ export function DayMealList() {
       keyExtractor={(item) => item.meal}
       renderItem={({ item }: { item: IMealInfo }) => <MealCard info={item} />}
       renderSectionHeader={({ section: { title } }) => (
-        <Title weight={'regular'}>{title}</Title>
+        <SubHeading weight={'regular'}>{title}</SubHeading>
       )}
     />
   )

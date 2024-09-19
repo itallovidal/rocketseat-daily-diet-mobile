@@ -1,8 +1,9 @@
 import React from 'react'
-import { Card, CardStyleProps } from './stats-card.style'
+import { Card } from './stats-card.style'
+import { TDietStyle } from '../../../components/global.styles'
 
 interface IStatsCardProps {
-  variant: CardStyleProps
+  variant: TDietStyle
   info: {
     title: string
     description: string

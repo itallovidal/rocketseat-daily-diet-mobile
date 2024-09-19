@@ -1,12 +1,5 @@
 import styled from 'styled-components/native'
 
-export const Title = styled.Text<{ weight: 'bold' | 'regular' }>(
-  ({ weight }) => ({
-    fontSize: 16,
-    fontWeight: weight === 'bold' ? 'bold' : 'regular',
-  }),
-)
-
 export const theme = {
   colors: {
     redLight: '#F4E6E7',
@@ -41,3 +34,40 @@ export const dietStyle = {
 }
 
 export type TDietStyle = keyof typeof dietStyle
+
+const textStyle = {
+  neutral: {
+    weight: 'regular',
+    color: theme.colors.gray700,
+  },
+  black: {
+    weight: 'bold',
+    color: theme.colors.gray700,
+  },
+  'diet-in': {
+    weight: 'bold',
+    color: theme.colors.greenDark,
+  },
+  'diet-out': {
+    weight: 'bold',
+    color: theme.colors.redDark,
+  },
+}
+
+type ITextStyleProps = keyof typeof textStyle
+
+export const Heading = styled.Text<{ variant: ITextStyleProps }>(
+  ({ variant }) => ({
+    fontSize: 32,
+    fontWeight: textStyle[variant].weight,
+    color: textStyle[variant].color,
+  }),
+)
+
+export const SubHeading = styled.Text<{ variant: ITextStyleProps }>(
+  ({ variant }) => ({
+    fontSize: 16,
+    fontWeight: textStyle[variant].weight,
+    color: textStyle[variant].color,
+  }),
+)
