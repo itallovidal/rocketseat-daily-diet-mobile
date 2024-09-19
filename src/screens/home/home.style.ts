@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-export const Title = styled.Text({
-  color: 'blue',
-  textAlign: 'center',
+export const Wrapper = styled.View({
+  flex: 1,
+  padding: 16,
 })
