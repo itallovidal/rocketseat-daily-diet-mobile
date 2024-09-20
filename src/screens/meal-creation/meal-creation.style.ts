@@ -1,4 +1,5 @@
 import styled from 'styled-components/native'
+import { theme } from '../../components/global.styles'
 
 export const Form = styled.View({
   background: 'white',
@@ -26,6 +27,20 @@ export const Label = styled.TextInput({
 export const DateTimeWrapper = styled.View({
   flexDirection: 'row',
   gap: 4,
+})
+
+export const DateChoosed = styled.Text({
+  borderWidth: 1,
+  borderColor: theme.colors.gray300,
+  padding: 8,
+  borderRadius: 6,
+})
+
+export const HourChoosed = styled.Text({
+  borderWidth: 1,
+  borderColor: theme.colors.gray300,
+  padding: 8,
+  borderRadius: 6,
 })
 
 export const IsDietInListWrapper = styled.View({
