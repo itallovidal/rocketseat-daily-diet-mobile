@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 
-export const Wrapper = styled.View({
+export const Wrapper = styled.TouchableOpacity({
   flexDirection: 'row',
   padding: 16,
   background: 'white',
@@ -26,7 +26,7 @@ export const Dot = styled.View<{ variant: 'diet-in' | 'diet-out' }>(
     width: 18,
     height: 18,
     backgroundColor:
-      variant === 'diet-in' ? theme.colors.redMid : theme.colors.greenMid,
+      variant === 'diet-in' ? theme.colors.greenMid : theme.colors.redMid,
     borderRadius: 50,
   }),
 )

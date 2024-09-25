@@ -8,34 +8,73 @@ import {
   InputWrapper,
   IsDietInListWrapper,
   Label,
-} from './meal-creation.style'
+} from './meal-form.style'
 import { useTheme } from 'styled-components'
 import { Button } from '../../components/button/button'
 import { DotIcon } from '../../components/dot-icon/dot-icon'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { IMealSchema, mealSchema } from './schema'
+import { IMeal, IMealSchema, mealSchema } from './schema'
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker'
-import { addHours, format } from 'date-fns'
+import { addHours, format, subDays } from 'date-fns'
+import { storeNewMeal } from '../../utils/store-new-meal'
+import { useNavigation, useRoute } from '@react-navigation/native'
+import { TAppRoutesProps } from '../../routes/routes'
+import { updateStoredMeal } from '../../utils/update-stored-meal'
 
-export function MealCreation() {
+export function MealForm() {
   const theme = useTheme()
+  const { navigate } = useNavigation<TAppRoutesProps>()
+  const { params } = useRoute()
+  const routeParams = params as { mealToEdit: IMeal } | undefined
+
+  const defaultValues = routeParams?.mealToEdit
+    ? {
+        ...routeParams?.mealToEdit,
+        date: new Date(routeParams!.mealToEdit.date),
+        hour: new Date(routeParams!.mealToEdit.hour),
+      }
+    : {
+        date: new Date(),
+        hour: addHours(new Date(), -3),
+      }
+
+  const isEditing = !!routeParams?.mealToEdit
+
   const { control, handleSubmit, setValue, watch } = useForm<IMealSchema>({
     resolver: zodResolver(mealSchema),
-    defaultValues: {
-      date: new Date(),
-      hour: addHours(new Date(), -3),
-    },
+    defaultValues,
   })
 
   async function submitMeal(data: IMealSchema) {
-    console.log(data)
+    if (isEditing) {
+      console.log('Atualizando nova refeição..')
+
+      await updateStoredMeal(
+        routeParams.mealToEdit.id,
+        routeParams.mealToEdit.date,
+        data,
+      )
+
+      navigate('home')
+      return
+    }
+
+    console.log('Criando nova refeição..')
+    await storeNewMeal(data)
+
+    navigate('mealFormFinish', {
+      status: data.isHealthyFood,
+    })
   }
 
   const datePicked = format(watch('date'), 'dd/MM/yyyy')
   const hoursPicked = format(watch('hour'), 'HH:mm')
+  console.log('---')
+  console.log(hoursPicked)
 
   const isHealthyFood = watch('isHealthyFood')
+  console.log(isHealthyFood)
 
   function showDatePicker() {
     DateTimePickerAndroid.open({
@@ -45,7 +84,7 @@ export function MealCreation() {
       },
       mode: 'date',
       is24Hour: true,
-      minimumDate: new Date(),
+      minimumDate: subDays(new Date(), 1),
     })
   }
 
@@ -127,7 +166,7 @@ export function MealCreation() {
             onPress={() => setValue('isHealthyFood', false)}
             style={{ flex: 1 }}
             icon={<DotIcon variant={'diet-out'} />}
-            variant={!isHealthyFood ? 'diet-out' : 'light'}
+            variant={isHealthyFood === false ? 'diet-out' : 'light'}
           >
             Não
           </Button>
@@ -137,7 +176,7 @@ export function MealCreation() {
         onPress={handleSubmit(submitMeal)}
         style={{ marginBottom: 16, marginHorizontal: 16 }}
       >
-        Cadastrar Refeição
+        {isEditing ? 'Editar Refeição' : 'Cadastrar Refeição'}
       </Button>
     </>
   )

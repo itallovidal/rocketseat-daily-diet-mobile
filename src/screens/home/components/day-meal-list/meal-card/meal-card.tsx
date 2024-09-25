@@ -1,20 +1,28 @@
 import { Description, Hour, Wrapper, Dot } from './ meal-card.style'
-
-export interface IMealInfo {
-  date: string
-  meal: string
-  status: 'diet-in' | 'diet-out'
-}
+import { IMeal } from '../../../../meal-form/schema'
+import { format } from 'date-fns'
+import { useNavigation } from '@react-navigation/native'
+import { TAppRoutesProps } from '../../../../../routes/routes'
 
 interface IMealCardProps {
-  info: IMealInfo
+  info: IMeal
 }
 
-export function MealCard({ info: { meal, status, date } }: IMealCardProps) {
+export function MealCard({ info }: IMealCardProps) {
+  const status = info.isHealthyFood ? 'diet-in' : 'diet-out'
+  const date = format(info.hour, 'HH:mm')
+  const { navigate } = useNavigation<TAppRoutesProps>()
+
+  function handlePress() {
+    navigate('mealDetails', {
+      meal: info,
+    })
+  }
+
   return (
-    <Wrapper>
+    <Wrapper onPress={handlePress}>
       <Hour>{date}</Hour>
-      <Description>{meal}</Description>
+      <Description>{info.name}</Description>
       <Dot variant={status} />
     </Wrapper>
   )

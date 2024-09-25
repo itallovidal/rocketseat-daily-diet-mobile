@@ -9,3 +9,7 @@ export const mealSchema = z.object({
 })
 
 export interface IMealSchema extends z.infer<typeof mealSchema> {}
+
+export interface IMeal extends IMealSchema {
+  id: string
+}

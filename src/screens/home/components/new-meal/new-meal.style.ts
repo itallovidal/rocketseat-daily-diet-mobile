@@ -1,6 +1,0 @@
-import styled from 'styled-components/native'
-
-export const Wrapper = styled.View({
-  gap: 12,
-  marginTop: 24,
-})
